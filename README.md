@@ -1,7 +1,7 @@
 # NumberQuest-Python
-# 🎮 GuessMaster – Number Guessing Game with Login System
+# 🎮 NumberQuest – Number Guessing Game with Login System
 
-GuessMaster is a beginner-friendly Python project that combines a user authentication system with a number guessing game. It was built as part of my journey to learn programming fundamentals and improve problem-solving skills.
+NumberQuest is a beginner-friendly Python project that combines a user authentication system with a number guessing game. It was built as part of my journey to learn programming fundamentals and improve problem-solving skills.
 
 ---
 
