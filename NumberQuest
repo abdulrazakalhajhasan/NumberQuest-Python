@@ -1,0 +1,115 @@
+import random
+
+# ---------------------------
+# Register function
+# ---------------------------
+def register():
+    print("-" * 25)
+    print("Register New Account")
+    print("-" * 25)
+
+    username = input("Choose a username: ")
+    password = input("Choose a password: ")
+
+    with open("users.txt", "a") as file:
+        file.write(username + "," + password + "\n")
+
+    print("Account created successfully!")
+
+
+# ---------------------------
+# Login function
+# ---------------------------
+def login():
+    print("-" * 25)
+    print("Login")
+    print("-" * 25)
+
+    username = input("Enter username: ")
+    password = input("Enter password: ")
+
+    try:
+        with open("users.txt", "r") as file:
+            for line in file:
+                stored_user, stored_pass = line.strip().split(",")
+
+                if stored_user == username and stored_pass == password:
+                    print("Login successful! Welcome", username)
+                    return True
+    except FileNotFoundError:
+        print("No users found. Please register first.")
+        return False
+
+    print("Invalid username or password.")
+    return False
+
+
+# ---------------------------
+# Game function
+# ---------------------------
+def game_loop():
+    number = random.randint(1, 100)
+    attempts = 3
+
+    print("\n🎮 Guess the Number Game!")
+    print("I picked a number between 1 and 100.")
+
+    while attempts > 0:
+        print(f"\nAttempts remaining: {attempts}")
+
+        try:
+            guess = int(input("Enter your guess: "))
+        except ValueError:
+            print("❌ Please enter a valid number.")
+            continue
+
+        if guess == number:
+            print("🎉 You guessed the number correctly!")
+            return
+        elif guess > number:
+            print("📉 Too high!")
+        else:
+            print("📈 Too low!")
+
+        attempts -= 1
+
+    print(f"❌ Out of attempts. The number was {number}.")
+
+
+# ---------------------------
+# Main program
+# ---------------------------
+def main():
+    print("-" * 25)
+    print("Welcome to the System")
+    print("-" * 25)
+    print("1. Register")
+    print("2. Login")
+    print("-" * 25)
+
+    choice = input("Choose an option: ")
+
+    logged_in = False
+
+    if choice == "1":
+        register()
+
+    elif choice == "2":
+        logged_in = login()
+
+    else:
+        print("Invalid choice")
+
+    # After login → start game
+    if choice == "2" and logged_in:
+        while True:
+            game_loop()
+
+            again = input("\nDo you want to play again? (yes/no): ").lower()
+            if again != "yes":
+                print("Thanks for playing!")
+                break
+
+
+# Run program
+main()
