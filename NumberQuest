@@ -49,7 +49,8 @@ def login():
 # ---------------------------
 def game_loop():
     number = random.randint(1, 100)
-    attempts = 3
+    attempts = 10
+    score = 100
 
     print("\n🎮 Guess the Number Game!")
     print("I picked a number between 1 and 100.")
@@ -65,15 +66,71 @@ def game_loop():
 
         if guess == number:
             print("🎉 You guessed the number correctly!")
-            return
+            print('Your score was', score)
+            return True
         elif guess > number:
             print("📉 Too high!")
         else:
             print("📈 Too low!")
 
         attempts -= 1
+        score -= 10
 
     print(f"❌ Out of attempts. The number was {number}.")
+    return False
+
+
+# ---------------------------
+# Calculator function
+# ---------------------------
+def calculator():
+    print("\n🧮 Calculator unlocked!")
+
+    def add(a, b):
+        return a + b
+
+    def subtract(a, b):
+        return a - b
+
+    def multiply(a, b):
+        return a * b
+
+    def divide(a, b):
+        if b == 0:
+            return "Cannot divide by zero"
+        return a / b
+
+    while True:
+        print("\nChoose an arithmetic option")
+        print("1. Addition")
+        print("2. Subtraction")
+        print("3. Multiplication")
+        print("4. Division")
+        print("5. Quit")
+
+        choice = input("Choose an option: ")
+
+        if choice == "5":
+            print("Exiting calculator...")
+            break
+
+        try:
+            a = int(input("Enter first number: "))
+            b = int(input("Enter second number: "))
+        except ValueError:
+            print("❌ Please enter valid numbers.")
+            continue
+
+        if choice == "1":
+            print("Result:", add(a, b))
+        elif choice == "2":
+            print("Result:", subtract(a, b))
+        elif choice == "3":
+            print("Result:", multiply(a, b))
+        elif choice == "4":
+            print("Result:", divide(a, b))
+        else:
+            print("Invalid choice")
 
 
 # ---------------------------
@@ -93,22 +150,31 @@ def main():
 
     if choice == "1":
         register()
-
     elif choice == "2":
         logged_in = login()
-
     else:
         print("Invalid choice")
+        return
 
-    # After login → start game
+    # Only continue if logged in
     if choice == "2" and logged_in:
-        while True:
-            game_loop()
 
-            again = input("\nDo you want to play again? (yes/no): ").lower()
+        while True:
+            won = game_loop()
+
+            if won:
+                print("\n🔥 You unlocked the calculator!")
+                calculator()
+                break  # exit after calculator
+
+            again = input("\nDo you want to try again? (yes/no): ").lower()
             if again != "yes":
-                print("Thanks for playing!")
+                print("Goodbye!")
                 break
+
+
+# Run program
+main()
 
 
 # Run program
