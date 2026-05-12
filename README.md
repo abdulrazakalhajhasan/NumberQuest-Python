@@ -1,7 +1,7 @@
 # NumberQuest-Python
 # 🎮 NumberQuest – Number Guessing Game with Login System
 
-NumberQuest is a beginner-friendly Python project that combines a user authentication system with a number guessing game. It was built as part of my journey to learn programming fundamentals and improve problem-solving skills.
+NumberQuest is a beginner-friendly Python project that combines a user authentication system with a number guessing game and a calculator. It was built as part of my journey to learn programming fundamentals and improve problem-solving skills.
 
 ---
 
@@ -13,6 +13,7 @@ NumberQuest is a beginner-friendly Python project that combines a user authentic
 - Limited attempts system (3 tries)
 - Win/lose feedback system
 - Simple menu-based interface
+- Simple arithmetic Calculator
 
 ---
 
